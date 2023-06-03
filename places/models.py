@@ -25,3 +25,16 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='imgs',
+        verbose_name='Место',
+        )
+    image = models.ImageField()
+
+    def __str__(self) -> str:
+        return str(self.id) + ' ' + self.place.title
