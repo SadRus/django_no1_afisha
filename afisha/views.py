@@ -4,9 +4,10 @@ from places.models import Place
 
 
 def get_place_data(place):
+    place_images = place.imgs.all().order_by('position')
     place_data = {
         "title": place.title,
-        "imgs": [img.image.url for img in place.imgs.all()],
+        "imgs": [image.image.url for image in place_images],
         "description_short": place.description_short,
         "description_long": place.description_long,
         "coordinates": {

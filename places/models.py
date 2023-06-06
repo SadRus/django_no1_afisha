@@ -35,6 +35,11 @@ class Image(models.Model):
         verbose_name='Место',
         )
     image = models.ImageField()
+    position = models.IntegerField(
+        'Позиция ',
+        null=True,
+        blank=True,
+    )
 
     def __str__(self) -> str:
         return str(self.id) + ' ' + self.place.title

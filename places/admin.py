@@ -19,6 +19,7 @@ class PlaceAdmin(admin.ModelAdmin):
         ImageInline,
     ]
 
+
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     pass
