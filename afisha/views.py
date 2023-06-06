@@ -1,36 +1,50 @@
-from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, HttpResponse
 from places.models import Place
 
 
 def index(request):
-    place = Place.objects.first()
     places = {
         "type": "FeatureCollection",
-        "features": [
+        "features": [],
+    }
+
+    places_data = Place.objects.all()
+    for place in places_data:
+        places['features'].append(
             {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [37.62, 55.793676]
+                    "coordinates": [place.longitude, place.latitude]
                 },
                 "properties": {
                     "title": place.title,
                     "placeId": place.id,
-                    "detailsUrl": "static/places/moscow_legends.json"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [37.64, 55.753676]
-                },
-                "properties": {
-                    "title": "Крыши24.рф",
-                    "placeId": "roofs24",
                     "detailsUrl": "static/places/roofs24.json"
                 }
             }
-        ]
-    }
+        )
     return render(request, 'index.html', context={'places': places})
+
+
+def place_detail(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+    place_data = {
+        "title": place.title,
+        "imgs": [img.image.url for img in place.imgs.all()],
+        "description_short": place.description_short,
+        "description_long": place.description_long,
+        "coordinates": {
+            "lng": place.longitude,
+            "lat": place.latitude,
+        }
+    }
+    response = JsonResponse(
+        place_data,
+        json_dumps_params={
+            'ensure_ascii': False,
+            'indent': 2,
+        }
+    )
+    return response

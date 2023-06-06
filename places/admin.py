@@ -5,6 +5,7 @@ from .models import Place, Image
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     list_display = (
+        'pk',
         'title',
         'display_description_short',
         'longitude',

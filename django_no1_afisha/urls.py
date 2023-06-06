@@ -23,4 +23,5 @@ from afisha import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('places/<int:place_id>/', views.place_detail, name='places'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
