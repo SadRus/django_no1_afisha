@@ -1,6 +1,20 @@
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.shortcuts import get_object_or_404, render
 from places.models import Place
+
+
+def get_place_data(place):
+    place_data = {
+        "title": place.title,
+        "imgs": [img.image.url for img in place.imgs.all()],
+        "description_short": place.description_short,
+        "description_long": place.description_long,
+        "coordinates": {
+            "lng": place.longitude,
+            "lat": place.latitude,
+        }
+    }
+    return place_data
 
 
 def index(request):
@@ -30,16 +44,7 @@ def index(request):
 
 def place_detail(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
-    place_data = {
-        "title": place.title,
-        "imgs": [img.image.url for img in place.imgs.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
-        "coordinates": {
-            "lng": place.longitude,
-            "lat": place.latitude,
-        }
-    }
+    place_data = get_place_data(place)
     response = JsonResponse(
         place_data,
         json_dumps_params={
