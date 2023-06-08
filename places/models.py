@@ -37,11 +37,16 @@ class Image(models.Model):
     image = models.ImageField(
         'Картинка'
     )
-    position = models.IntegerField(
-        'Позиция ',
+    position = models.PositiveIntegerField(
+        'Позиция',
+        default=0,
         null=True,
         blank=True,
+        db_index=True,
     )
+
+    class Meta:
+        ordering = ['position']
 
     def __str__(self) -> str:
         return str(self.id) + ' ' + self.place.title
