@@ -34,7 +34,9 @@ class Image(models.Model):
         related_name='imgs',
         verbose_name='Место',
         )
-    image = models.ImageField()
+    image = models.ImageField(
+        'Картинка'
+    )
     position = models.IntegerField(
         'Позиция ',
         null=True,
