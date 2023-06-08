@@ -36,7 +36,7 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": place.id,
-                    "detailsUrl": "static/places/roofs24.json"
+                    "detailsUrl": f"places/{ place.id }"
                 }
             }
         )
