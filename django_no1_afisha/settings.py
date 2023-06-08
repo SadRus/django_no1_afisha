@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'afisha',
     'places',
     'adminsortable2',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
