@@ -1,7 +1,7 @@
 # django_no1_afisha
 
 ### Description  
-Interactive map shows the most popular places added by author.
+Interactive map shows the most popular places added by author.  
 My example:  
 https://sadrus.pythonanywhere.com/
 
@@ -24,7 +24,7 @@ Enviroment variables includes django settings variables, which you can see in th
 - `DATABASE` - name of created database.
 - `DEBUG` - set False for deployment or True for development.
 - `SECRET_KEY` - yours django project secret key from settings.
-- `STATIC_ROOT` - folder where **collectstatic** will save files before deploy.
+- `STATIC_ROOT` - folder where **collectstatic** command will save static files for serving by deploy.
 - `MEDIA_ROOT` - folder for storage user uploaded files.
 
 ### Usage  
