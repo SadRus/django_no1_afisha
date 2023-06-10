@@ -2,6 +2,8 @@
 
 ### Description  
 Interactive map shows the most popular places added by author.
+My example:  
+https://sadrus.pythonanywhere.com/
 
 ### Objective of project
 The app is written for educational purposes within online courses for web developers dvmn.org.
@@ -38,4 +40,6 @@ Enviroment variables includes django settings variables, which you can see in th
 - Run the server:  
 ```python manage.py runserver```
 
-- For adding new locations go to http://127.0.0.1:8000/admin to places http://127.0.0.1:8000/admin/places/place/ 
+- Add locations to database:  
+Use admin panel http://127.0.0.1:8000/admin
+
