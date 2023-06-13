@@ -38,7 +38,7 @@ Enviroment variables includes django settings variables, which you can see in th
 - Create the superuser:  
 ```python manage.py createsuperuser```
 
-- Run the server:  
+- For development run the django server:  
 ```python manage.py runserver```
 
 - Add locations to database manually:  
