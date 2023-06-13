@@ -3,7 +3,10 @@
 ### Description  
 Interactive map shows the most popular places added by author.  
 My example:  
-https://sadrus.pythonanywhere.com/
+https://sadrus.pythonanywhere.com/  
+
+Test ownership data from the site  
+https://github.com/devmanorg/where-to-go-places
 
 ### Objective of project
 The app is written for educational purposes within online courses for web developers dvmn.org.
@@ -29,8 +32,6 @@ Enviroment variables includes django settings variables, which you can see in th
 
 ### Usage  
 
-### Development
-
 - Apply migrations:  
 ```python manage.py migrate```
 
@@ -40,6 +41,8 @@ Enviroment variables includes django settings variables, which you can see in th
 - Run the server:  
 ```python manage.py runserver```
 
-- Add locations to database:  
+- Add locations to database manually:  
 Use admin panel http://127.0.0.1:8000/admin
 
+- Or use **load_place** argument to add location from json:  
+```python manage.py load_place https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/%D0%90%D0%BD%D1%82%D0%B8%D0%BA%D0%B0%D1%84%D0%B5%20Bizone.json```
