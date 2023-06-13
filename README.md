@@ -6,7 +6,8 @@ My example:
 https://sadrus.pythonanywhere.com/  
 
 Test ownership data from the site  
-https://github.com/devmanorg/where-to-go-places
+https://github.com/devmanorg/where-to-go-places  
+![image](https://github.com/SadRus/django_no1_afisha/assets/79669407/ffffa3f5-ab98-4134-98db-dab16400a4f1)  
 
 ### Objective of project
 The app is written for educational purposes within online courses for web developers dvmn.org.
