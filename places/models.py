@@ -30,6 +30,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
+
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
@@ -57,5 +58,5 @@ class Image(models.Model):
     class Meta:
         ordering = ['position']
 
-    def __str__(self) -> str:
-        return str(self.id) + ' ' + self.place.title
+    def __str__(self):
+        return f'{self.id} {self.place.title}'
