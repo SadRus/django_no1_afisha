@@ -34,7 +34,7 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         related_name='imgs',
         verbose_name='Место',
-        )
+    )
     filename = models.CharField(
         'Имя файла',
         max_length=50,
