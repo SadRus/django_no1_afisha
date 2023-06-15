@@ -37,7 +37,6 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     list_display = (
         'pk',
         'title',
-        'display_description_short',
         'longitude',
         'latitude',
     )

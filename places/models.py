@@ -10,9 +10,13 @@ class Place(models.Model):
     )
     description_short = models.TextField(
         'Краткое описание',
+        null=True,
+        blank=True,
     )
     description_long = HTMLField(
         'Описание',
+        null=True,
+        blank=True,
     )
     longitude = models.FloatField(
         'Долгота',
@@ -20,9 +24,6 @@ class Place(models.Model):
     latitude = models.FloatField(
         'Широта',
     )
-
-    def display_description_short(self):
-        return self.description_short[:100] + '...'
 
     def __str__(self):
         return self.title
