@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Place, Image
 from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 
 
@@ -13,22 +12,17 @@ class ImageInline(SortableTabularInline):
         'get_preview_image',
     )
 
+    readonly_fields = (
+        'get_preview_image',
+    )
+
     def get_extra(self, request, obj=None, **kwargs):
         extra = 2
         return extra
 
-    try:
-        readonly_fields = (
-            'get_preview_image',
-        )
-    except Exception as err:
-        print(Exception, err)
-
-    def get_preview_image(self, obj):
-        url = obj.image.url
+    def get_preview_image(self, image):
         return format_html(
-            "<b>{}</b>",
-            mark_safe(f'<img src="{url}" width="auto" height="150px"/>'),
+            f'<img src="{image.image.url}" width="auto" height="200px"/>'
         )
 
 
