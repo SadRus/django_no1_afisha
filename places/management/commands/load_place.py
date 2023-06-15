@@ -1,9 +1,7 @@
 import requests
 
-from django.core.exceptions import MultipleObjectsReturned
 from django.core.files.base import ContentFile
 from django.core.management import BaseCommand
-from django.db.utils import IntegrityError
 from django.core.management.base import CommandParser
 from urllib.parse import urlparse
 
@@ -40,14 +38,5 @@ class Command(BaseCommand):
 
             content_file = ContentFile(response.content)
             filename = urlparse(image_url).path.split('/')[-1]
-            try:
-                img, image_is_created = Image.objects.get_or_create(
-                    place=place,
-                    filename=filename,
-                )
-                if image_is_created:
-                    img.image.save(filename, content_file, save=True)
-            except IntegrityError:
-                print(f'Image: {filename} is already exist')
-            except MultipleObjectsReturned as err:
-                print(err)
+            img = Image.objects.create(place=place)
+            img.image.save(filename, content_file, save=True)

@@ -44,6 +44,7 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'filename',
+    list_display = (
+        'place',
+        'image',
     )

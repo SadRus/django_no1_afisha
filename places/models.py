@@ -37,13 +37,7 @@ class Image(models.Model):
         related_name='imgs',
         verbose_name='Место',
     )
-    filename = models.CharField(
-        'Имя файла',
-        max_length=50,
-        unique=True,
-        blank=True,
-        null=True,
-    )
+
     image = models.ImageField(
         'Картинка',
     )
