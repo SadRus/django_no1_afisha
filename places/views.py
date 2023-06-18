@@ -5,23 +5,23 @@ from places.models import Place
 
 def index(request):
     places = {
-        "type": "FeatureCollection",
-        "features": [],
+        'type': 'FeatureCollection',
+        'features': [],
     }
 
     places_data = Place.objects.all()
     for place in places_data:
         places['features'].append(
             {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [place.longitude, place.latitude]
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [place.longitude, place.latitude]
                 },
-                "properties": {
-                    "title": place.title,
-                    "placeId": place.id,
-                    "detailsUrl": f"places/{ place.id }"
+                'properties': {
+                    'title': place.title,
+                    'placeId': place.id,
+                    'detailsUrl': f'places/{ place.id }'
                 }
             }
         )
