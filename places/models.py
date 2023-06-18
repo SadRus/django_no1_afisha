@@ -3,7 +3,6 @@ from tinymce.models import HTMLField
 
 
 class Place(models.Model):
-
     title = models.CharField(
         'Название',
         max_length=80,
@@ -30,7 +29,6 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
