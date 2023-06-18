@@ -9,12 +9,10 @@ class Place(models.Model):
     )
     description_short = models.TextField(
         'Краткое описание',
-        null=True,
         blank=True,
     )
     description_long = HTMLField(
         'Описание',
-        null=True,
         blank=True,
     )
     longitude = models.FloatField(
