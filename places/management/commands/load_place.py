@@ -21,22 +21,26 @@ class Command(BaseCommand):
         url = options['url']
         response = requests.get(url)
         response.raise_for_status()
-        place_data = response.json()
+        raw_place = response.json()
 
-        place, _ = Place.objects.get_or_create(
-            title=place_data['title'],
-            description_short=place_data['description_short'],
-            description_long=place_data['description_long'],
-            longitude=place_data['coordinates']['lng'],
-            latitude=place_data['coordinates']['lat'],
+        place, place_is_created = Place.objects.get_or_create(
+            title=raw_place['title'],
+            defaults={
+                'description_short': raw_place.get('description_short', ''),
+                'description_long': raw_place.get('description_long', ''),
+                'longitude': raw_place['coordinates']['lng'],
+                'latitude': raw_place['coordinates']['lat'],
+            }
         )
+        if place_is_created:
+            image_urls = raw_place['imgs']
+            for image_url in image_urls:
+                response = requests.get(image_url)
+                response.raise_for_status()
 
-        image_urls = place_data['imgs']
-        for image_url in image_urls:
-            response = requests.get(image_url)
-            response.raise_for_status()
-
-            content_file = ContentFile(response.content)
-            filename = urlparse(image_url).path.split('/')[-1]
-            img = Image.objects.create(place=place)
-            img.image.save(filename, content_file, save=True)
+                filename = urlparse(image_url).path.split('/')[-1]
+                content_file = ContentFile(response.content, name=filename)
+                Image.objects.create(
+                    place=place,
+                    image=content_file,
+                )
