@@ -31,13 +31,13 @@ def index(request):
 def get_place_detail(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     serialize_place = {
-        "title": place.title,
-        "imgs": [image.image.url for image in place.imgs.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
-        "coordinates": {
-            "lng": place.longitude,
-            "lat": place.latitude,
+        'title': place.title,
+        'imgs': [image.image.url for image in place.imgs.all()],
+        'description_short': place.description_short,
+        'description_long': place.description_long,
+        'coordinates': {
+            'lng': place.longitude,
+            'lat': place.latitude,
         }
     }
     json_dumps_params = {
