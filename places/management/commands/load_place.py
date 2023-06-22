@@ -23,7 +23,7 @@ class Command(BaseCommand):
         response.raise_for_status()
         raw_place = response.json()
 
-        place, place_is_created = Place.objects.get_or_create(
+        place, place_is_created = Place.objects.update_or_create(
             title=raw_place['title'],
             defaults={
                 'description_short': raw_place.get('description_short', ''),
@@ -33,7 +33,7 @@ class Command(BaseCommand):
             }
         )
         if place_is_created:
-            image_urls = raw_place['imgs']
+            image_urls = raw_place.get('imgs', [])
             for image_url in image_urls:
                 response = requests.get(image_url)
                 response.raise_for_status()
